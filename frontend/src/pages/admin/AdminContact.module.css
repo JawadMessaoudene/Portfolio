@@ -1,0 +1,139 @@
+.section_contact__content {
+  max-width: 1040px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 500px));
+  justify-content: center;
+  grid-gap: 40px;
+  width: 100%;
+  padding: 9rem 0;
+}
+
+@media (min-width: 1024px) {
+  .section_contact__content {
+    padding: 15rem 0;
+    
+  }
+}
+
+.c_yup {
+  color: tomato;
+  text-align: center;
+}
+
+.c_yup:before {
+  display: inline;
+  content: '⚠';
+}
+
+.empty_data {
+  width: 100%;
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size: clamp(3.25rem, 5vw + 1rem, 4rem);
+  background: linear-gradient(
+    110deg,
+    var(--color-secondary) 0%,
+    var(--color-secondary2) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.contact_form {
+  width: 100%;
+  background-color: var(--color-secondary2);
+  border-radius: 13px;
+  padding: 30px;
+  display: flex; /* Utilise flexbox pour centrer le contenu */
+  flex-direction: column; /* Aligne les enfants en colonne */
+  align-items: center; /* Centre les enfants horizontalement */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 20px;
+}
+.form-group + .form-group {
+  margin-top: 5px;
+}
+
+input.form_control {
+  height: 45px;
+  width: 100%;
+  border-radius: 13px;
+  border: 2px solid rgba(21, 0, 80, 0.4);
+  padding: 0 15px;
+}
+
+input.form_control:focus,
+input.form_control:hover,
+textarea.form_control:focus,
+textarea.form_control:hover {
+  outline: 0;
+  border: 2px solid var(--color-primary2);
+}
+
+.form_control::placeholder {
+  font-family: "Tajawal", sans-serif;
+  font-size: 16px;
+  color: rgba(21, 0, 80, 0.4);
+  font-weight: 500;
+}
+
+textarea.form_control {
+  width: 100%;
+  border-radius: 13px;
+  border: 2px solid rgba(21, 0, 80, 0.4);
+  padding: 10px 15px;
+  resize: none;
+}
+
+textarea.form_control::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+textarea.form_control::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 5px 0;
+}
+
+.form_control[is-valid="false"],
+.form_control[is-valid="false"]:hover {
+  border-color: red;
+}
+
+.validation-message {
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+}
+
+.succes{
+  color: rgb(50, 171, 9);
+  font-size: 1.10rem;
+}
+
+@media (max-width: 1024px) {
+  .succes{
+  color: rgb(50, 171, 9);;
+  font-size: 0.75rem;
+}
+}

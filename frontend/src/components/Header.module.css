@@ -1,0 +1,30 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-size);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15vw;
+    background-color: black;
+    z-index: 1000;
+  }
+  
+  .header_name {
+    display: flex;
+    align-items: center;
+    color: var(--color-secondary2);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    margin-right: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .header_name {
+      font-size: 25px;
+    }
+  }

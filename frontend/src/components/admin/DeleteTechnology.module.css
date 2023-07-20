@@ -1,0 +1,108 @@
+.contenerdelete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.confirmationdelete {
+  padding-top: 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.titledelete {
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .titledelete {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+.submitadd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+.btn_yes {
+  margin-top: 1rem;
+  height: fit-content;
+  width: fit-content;
+  align-self: center;
+  border-width: 2px;
+  border-color: #f56565;
+  background-color: #f56565;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  color: #f8fafc;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn_yes:hover {
+  border-color: #fca5a5;
+  background-color: #fca5a5;
+}
+
+.btn_yes:disabled {
+  border-color: #cbd5e0;
+  background-color: #cbd5e0;
+}
+
+.btn_yes-lg {
+  margin-top: 2rem;
+}
+
+.btn_no {
+    margin-top: 1rem;
+    height: fit-content;
+    width: fit-content;
+    align-self: center;
+    border-width: 2px;
+    border-color: #d1d5db;
+    background-color: #d1d5db;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: #f8fafc;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn_no:hover {
+    border-color: #e2e8f0;
+    background-color: #e2e8f0;
+  }
+  
+  .btn_no:disabled {
+    border-color: #cbd5e0;
+    background-color: #cbd5e0;
+  }
+  
+  .btn_no-lg {
+    margin-top: 2rem;
+  }
+  

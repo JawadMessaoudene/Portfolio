@@ -1,0 +1,58 @@
+.conteneradd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap; 
+  text-align: center;
+}
+
+
+.titleadd {
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .titleadd {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 1.5rem;
+  }
+  .formadd {
+    padding: 2rem;
+  }
+}
+
+.formadd {
+  gap: 1rem;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  padding: 1rem;
+}
+
+.submitadd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+
+
+.inputadd {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.inputadd::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+
+  

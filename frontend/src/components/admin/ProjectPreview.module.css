@@ -1,0 +1,45 @@
+/* ProjetPreview.module.css */
+
+.projet_preview {
+  position: relative;
+}
+
+.projet_preview::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Fond transparent par défaut */
+  z-index: 1;
+  opacity: 0; /* Définir l'opacité initiale à 0 pour qu'il soit invisible par défaut */
+  transition: opacity 0.3s ease; /* Ajouter une transition pour une apparition en douceur */
+}
+
+.projet_preview:hover::before {
+  /* Au survol, affiche le fond gris transparent en ajustant l'opacité */
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+.projet_titre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+  visibility: hidden; /* Cacher le titre par défaut */
+  opacity: 0; /* Définir l'opacité initiale à 0 pour qu'il soit invisible par défaut */
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Ajouter une transition pour une apparition en douceur */
+}
+
+.projet_preview:hover .projet_titre {
+  /* Au survol, affiche le titre en ajustant l'opacité et la visibilité */
+  visibility: visible;
+  opacity: 1;
+}
