@@ -1,53 +1,44 @@
-## Concept
+README - Portfolio de Messaoudene Jawad
+Description
+Bienvenue sur mon portfolio ! Ce projet présente mes compétences en développement, les technologies que j'ai apprises, les projets que j'ai réalisés, et vous permet de me contacter pour toute question ou opportunité.
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+Installation
+Pour exécuter mon portfolio localement, suivez les étapes ci-dessous :
 
-## Setup & Use
+Clonez le projet en utilisant la commande suivante :
 
-### Windows users
+git clone https://github.com/votre-nom/portfolio.git
 
-Be sure to run these commands in a git terminal to avoid [issues with newline formats](https://en.wikipedia.org/wiki/Newline#Issues_with_different_newline_formats):
+Allez dans le répertoire du projet :
 
-```
-git config --global core.eol lf
-git config --global core.autocrlf false
-```
+cd portfolio
 
-### Project Initialization
+Installez les dépendances du front-end et du back-end :
 
-- In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
-- Clone this repo, enter it
-- If you are using `yarn` or `pnpm`, adapt the `config/cli` in `package.json`
-- Run command `npm install`
-- _NB: To launch the backend server, you'll need an environment file with database credentials. You'll find a template one in `backend/.env.sample`_
+npm install
 
-### Available Commands
+Configuration
+Créez un fichier .env dans le dossier du front-end et du back-end  en vous basant sur le fichier .envsample fourni. Assurez-vous de remplir les variables avec les bonnes valeurs.
 
-- `migrate` : Run the database migration script
-- `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
-- `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
-- `fix` : Fixes linter errors (run it if `lint` growls on your code !)
+Base de données
+Avant de lancer le projet, assurez-vous d'avoir une base de données configurée. Exécutez les migrations pour créer les tables nécessaires :
 
-## FAQ
+npm run migrate
+Lancement
+Pour lancer le projet, exécutez les commandes suivantes :
 
-### Tools
+npm run dev
+Cela lancera à la fois le serveur back-end et l'application front-end. Vous pourrez accéder à votre portfolio en ouvrant votre navigateur et en visitant l'adresse http://localhost:3000/.
 
-- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Husky_ : Allows to execute specific commands that trigger on _git_ events
-- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
-- _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
-- _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
-- _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
-- _Nodemon_ : Allows to restart the server everytime a .js file is udated
+Dashboard
+Sur cette page, vous trouverez mon CV à télécharger au format PDF. Cliquez simplement sur le bouton de téléchargement pour obtenir la dernière version de mon CV.
 
-### Deployment
+Technologies Apprises
+Ici, je liste les technologies que j'ai apprises et avec lesquelles je suis à l'aise. Cela comprend les langages de programmation, les frameworks, les outils et toutes autres compétences pertinentes.
 
-For deployment, you have to go to `secrets` → app `actions` on the github repo to insert via `New repository secret` :
+Projets
+Cette section présente une liste de projets que j'ai réalisés. Chaque projet est accompagné d'une brève description, des technologies utilisées et éventuellement d'un lien vers le code source et la démo.
 
-- CAPROVER_BACK_APPNAME : name app on caprover
-- CAPROVER_FRONT_APPNAME : name app on caprover
-- CAPROVER_PASSWORD : password caprover
-- CAPROVER_SERVER : link of domain
+Contact
+N'hésitez pas à me contacter si vous avez des questions, des suggestions ou des opportunités de collaboration. Vous pouvez utiliser le formulaire de contact sur cette page pour m'envoyer un message.
+
