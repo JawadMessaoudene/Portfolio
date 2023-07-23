@@ -3,6 +3,7 @@ import ProjetPreview from "../../components/admin/ProjectPreview";
 import Gloomy from "../../assets/images/Gloomy.png";
 import DailyExpat from "../../assets/images/Dailyexpat.png";
 import Applevolonteers from "../../assets/images/Applevolonteers.png";
+import Snake from "../../assets/images/Snake.png";
 import styles from "./AdminProjects.module.css";
 import Header from "../../components/Header";
 import Navbar from "../../components/Navbar";
@@ -23,6 +24,11 @@ function AdminProjects() {
       titre: "Apple volonteers",
       image: Applevolonteers,
       URL: "https://apple-volonteers.netlify.app",
+    },
+    {
+      titre: "Jeu du serpent",
+      image: Snake,
+      URL: "https://snake-projet.netlify.app/",
     },
   ];
 

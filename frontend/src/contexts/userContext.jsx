@@ -1,46 +1,52 @@
-import { createContext, useContext, useEffect, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "../hooks/useLocalStorage";
+import APIService from "../services/APIService";
 
 const UserContext = createContext();
 
 export default UserContext;
 
 export function UserContextProvider({ children }) {
-  // on utilise un hook personnalisé
-  const [user, setUser] = useLocalStorage("user", {});
-  const [token, setToken] = useLocalStorage("token", "");
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user") || "{}")
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user.id) navigate("/");
   }, [user.id]);
 
-  const logout = () => {
-    setUser({});
-    setToken("");
+  const login = (_user) => {
+    setUser(_user);
+    localStorage.setItem("user", JSON.stringify(_user));
   };
 
-  const login = (_user, _token) => {
-    setToken(_token);
-    setUser(_user);
+  const logout = async () => {
+    try {
+      await APIService.get("/logout");
+      navigate("/");
+      setUser({});
+      localStorage.removeItem("user");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const memo = useMemo(() => {
     return {
       user,
-      token,
+      setUser,
       logout,
       login,
     };
-  }, [user, token]);
+  }, [user]);
 
   return <UserContext.Provider value={memo}>{children}</UserContext.Provider>;
 }
 
 UserContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.shape().isRequired,
 };
 
 export const useUserContext = () => useContext(UserContext);

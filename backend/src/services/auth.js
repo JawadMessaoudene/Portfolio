@@ -3,71 +3,91 @@ const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET, JWT_TIMING } = process.env;
 
+// recommandation de l'OWASP pour la configuration d'Argon2
+const hashingOptions = {
+  type: argon2.argon2id,
+  memoryCost: 2 ** 16,
+  timeCost: 5,
+  parallelism: 1,
+};
+
 const hashPassword = (req, res, next) => {
-  // hash the password using argon2 then call next()
   argon2
-    .hash(req.body.password)
+    // récupération du mot de passe à hacher
+    .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
+      // stockage du mot de passe haché
       req.body.hashedPassword = hashedPassword;
-      // on supprime le mot de passe en clair pour ne laisser que le mot de passe hashé.
+      // suppression du mot de passe en clair
       delete req.body.password;
+
       next();
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(400);
+      res.sendStatus(500);
     });
 };
 
 const verifyPassword = (req, res) => {
-  // req.user.hashedPassword doit nous être fournis par un middleware précedent
-  // correspondant au mot de passe hashé, stocké dans la BDD pour l'utilisateur en train de se connecter
-  // On verifie si le mot de passe en clair reçu dans req.body.password, une fois hashé, correspond
-  // au mot de passe hashé stocké dans la BDD pour le user.
+  // req.user.hashedPassword est fourni par le middleware précedent il correspond au mot de passe hashé, stocké dans la BDD pour l'utilisateur en train de se connecter
+  // On verifie si le mot de passe en clair reçu dans req.body.password, une fois hashé, correspond au mot de passe hashé stocké dans la BDD pour le user.
   argon2
-    .verify(req.user.hashedPassword, req.body.password)
+    .verify(req.user.hashedPassword, req.body.password, hashingOptions)
     .then((isVerified) => {
-      // si la comparaison est positive, l'utilisateur est validé (email + password)
+      // si ok, l'utilisateur est validé
       if (isVerified) {
-        // on créé un token, encodé avec le mot de passe contenu dans le fichier d'environnement
-        const token = jwt.sign({ sub: req.user.id }, JWT_SECRET, {
-          algorithm: "HS512",
-          expiresIn: JWT_TIMING, // le token expirera après la durée défini dans le .env
-        });
+        // création d'un token, encodé avec un mot de passe stocké dans le .env
+        const token = jwt.sign(
+          {
+            sub: req.user,
+          },
+          JWT_SECRET,
+          {
+            expiresIn: JWT_TIMING,
+          }
+        );
+
+        delete req.body.password;
         delete req.user.hashedPassword;
-        res.send({ token, user: req.user });
+        delete req.user.email;
+
+        // Put token in cookie and send user, le cookie stocke le token d'accès
+        res
+          .cookie("access_token", token, {
+            // restreint l'accès au cookie pour le serveur uniquement
+            httpOnly: true,
+            // le cookie ne sera défini que si l'application est en production
+            secure: process.env.NODE_ENV === "production",
+          })
+          .send(req.user);
       } else res.sendStatus(401);
     })
     .catch((err) => {
-      // do something with err
       console.error(err);
-      res.sendStatus(400);
+      res.sendStatus(500);
     });
 };
 
+// middleware pour vérifier la validité du token d'accès
 const verifyToken = (req, res, next) => {
   try {
-    // On récupère la variable du header contenant l'authorization (le bearer token)
-    const autorizationHeader = req.headers.authorization;
-    if (!autorizationHeader)
-      throw new Error("Autorization needed for this route");
+    // Get token by cookies
+    const token = req.cookies.access_token;
 
-    const [type, token] = autorizationHeader.split(" ");
-    // Si le type du token n'est pas Bearer => error
-    if (type !== "Bearer") throw new Error("Only Bearer token allowed");
-    // Si pas de token detecté => Error
-    if (!token) throw new Error("Token needed");
-    // on place le contenu du token (payloads dans la propriété payloads de la requête)
-    // afin de pouvoir retrouver les infos de l'utilisateurs connecté dans la prochaine fonction.
+    if (!token) return res.sendStatus(403);
+
+    // Verify token with JWT_SECRET si valide, les info de l'utilisateur sont assignées à req.payloads
     req.payloads = jwt.verify(token, JWT_SECRET);
-    next();
+    return next();
   } catch (err) {
     console.error(err);
-    res.sendStatus(401);
+    return res.sendStatus(403);
   }
 };
 
 const logout = (req, res) => {
+  // supression du cookie "access_token"
   res.clearCookie("access_token").sendStatus(200);
 };
 

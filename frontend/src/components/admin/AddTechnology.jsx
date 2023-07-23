@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { technologySchema } from "../../services/validators";
+import { technologySchema } from "../../services/validationSchema";
 import notifySuccess, {
   notifyError,
 } from "../../services/ToastNotificationService";

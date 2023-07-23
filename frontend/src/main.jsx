@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { UserContextProvider } from "./contexts/userContext";
+import { UserContextProvider } from "./Contexts/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

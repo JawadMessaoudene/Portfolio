@@ -28,9 +28,11 @@
 
 .editview {
   width: 4vw;
-  height: 4vh;
+  height: 5vh;
   background: linear-gradient(98.58deg, #5fbaff 0%, #f5f5f5 100%);
 }
+
+
 
 .editview:hover {
   background: linear-gradient(98.58deg, #f5f5f5 0%, #5fbaff 100%);
@@ -38,10 +40,22 @@
 
 .deleteview {
   width: 4vw;
-  height: 4vh;
+  height: 5vh;
   background: linear-gradient(98.58deg, #5fbaff 0%, #f5f5f5 100%);
 }
 
 .deleteview:hover {
   background: linear-gradient(98.58deg, #f5f5f5 0%, #5fbaff 100%);
+}
+
+@media (max-width: 1024px) {
+  .editview {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .deleteview {
+    width: 2rem;
+    height: 2rem;
+  }
 }

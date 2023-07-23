@@ -1,27 +1,19 @@
 const express = require("express");
 
 const router = express.Router();
-// const { verifyPassword, verifyToken, logout } = require("./services/auth");
-// const { getUserByEmailMiddleWare } = require("./controllers/authControllers");
 
-// // Auth requiered
-// router.use(verifyToken);
-// router.get("/api/logout", logout);
+const { verifyPassword, verifyToken, logout } = require("./services/auth");
 
-// Public routes
-// Auth
-// router.post("/login", getUserByEmailMiddleWare, verifyPassword);
+const { getUserByEmailMiddleWare } = require("./controllers/authControllers");
+// routes publiques
 
-// Private routes
-const userControllers = require("./controllers/userControllers");
+router.post("/login", getUserByEmailMiddleWare, verifyPassword);
 
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.put("/users/:id", userControllers.edit);
-router.post("/users", userControllers.add);
-router.delete("/users/:id", userControllers.destroy);
+// auth
+router.get("/logout", verifyToken, logout);
 
-router.get("/users", userControllers.getMyProfile);
+// routes privées
+router.use(verifyToken);
 
 const technologyControllers = require("./controllers/technologyControllers");
 

@@ -1,13 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import { useUserContext } from "../Contexts/UserContext";
 
 function Header() {
+  const { logout } = useUserContext();
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.header_name}>
-        <span>Messaoudene Jawad</span>
-      </Link>
+      <span className={styles.header_name}>Messaoudene Jawad</span>
+      <button type="button" className={styles.btn} onClick={() => logout()}>
+        Se déconnecter
+      </button>
     </header>
   );
 }

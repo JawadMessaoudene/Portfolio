@@ -11,10 +11,10 @@ function Navbar() {
     <nav className={styles.sections_nav}>
       <ul>
         <NavLink
-          to="/"
+          to="/admin/dashboard"
           className={({ isActive }) =>
             isActive
-              ? styles["sections-nav__item_active"]
+              ? styles.sections_nav__item_active
               : styles.sections_nav_item
           }
         >
